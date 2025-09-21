@@ -5,10 +5,11 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
+import { AuthorsModule } from './authors/authors.module';
 
 @Module({
+  //EXPLICAR QUE ES ESTE MODULO
   imports: [
-    // eslint-disable-next-line  @typescript-eslint/no-unsafe-member-access
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver, //Que modulo de configuracion vas a usar?
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
@@ -24,6 +25,7 @@ import { join } from 'path';
       synchronize: true, // crea la tabla si no existe
     }),
     PostModule,
+    AuthorsModule,
   ],
   providers: [],
 })
